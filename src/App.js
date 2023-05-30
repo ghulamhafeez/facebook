@@ -1,9 +1,9 @@
 import "./App.css";
-
+import { Routes } from "./Route";
 function App() {
   return (
-    <div className="App">
-      <h1>FaceBook</h1>
+    <div>
+      <Routes />
     </div>
   );
 }

@@ -1,23 +1,31 @@
 import React from "react";
 import { Header } from "../facebook-components/Header";
 import Grid from "@mui/material/Grid";
-import { Facebook } from "../facebook-components/Facebook";
-
+import { Content } from "./Content";
+import { LeftSideBar } from "../facebook-components/LeftSideBar";
+import { RightSideBar } from "../facebook-components/RightSideBar";
 export const MainLayout = () => {
   return (
-    <Grid>
+    <Grid container direction={"row"} bgcolor={"#f0f2f5"}>
       <Grid
-        container
         flexWrap="wrap"
-        bgcolor={"#CCCCCC"}
-        height={"60px"}
+        bgcolor={"white"}
+        height={"57px"}
         width={1600}
-        paddingTop={"10px"}
+        paddingTop={1}
       >
         <Header />
       </Grid>
-      <Grid bgcolor={"#F0F2F5"} height={100}>
-        <Facebook />
+      <Grid paddingTop={2} display={"flex"} direction={"row"}>
+        <Grid item direction={"column"} height={1000} width={550}>
+          <LeftSideBar />
+        </Grid>
+        <Grid width={550} bgcolor={"white"} height={1000}>
+          <Content />
+        </Grid>
+        <Grid item direction={"column"} height={1000} width={480}>
+          <RightSideBar />
+        </Grid>
       </Grid>
     </Grid>
   );

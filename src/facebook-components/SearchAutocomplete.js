@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 export const SearchAutocomplete = () => {
   return (
     <Autocomplete
+   
       disablePortal
       id="combo-box-demo"
       options={["TEST 1", "TEST 1", "TEST 1", "TEST 1", "TEST 1"]}
@@ -15,6 +16,7 @@ export const SearchAutocomplete = () => {
         "& .Mui-focused": {
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: "white !important",
+            color:"white !important",
           },
         },
         "& .MuiOutlinedInput-root": {

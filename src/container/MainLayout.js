@@ -16,14 +16,14 @@ export const MainLayout = () => {
       >
         <Header />
       </Grid>
-      <Grid paddingTop={2} display={"flex"} direction={"row"}>
-        <Grid item direction={"column"} height={1000} width={550}>
+      <Grid paddingTop={2} display={"flex"} direction={"row"} >
+        <Grid item direction={"column"} height={1200} width={530}>
           <LeftSideBar />
         </Grid>
-        <Grid width={550} bgcolor={"white"} height={1000}>
+        <Grid width={580} bgcolor={"white"} height={1200} borderRadius={3}>
           <Content />
         </Grid>
-        <Grid item direction={"column"} height={1000} width={480}>
+        <Grid item direction={"column"} height={1200} width={480}>
           <RightSideBar />
         </Grid>
       </Grid>

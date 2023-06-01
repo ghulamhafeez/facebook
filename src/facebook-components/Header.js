@@ -14,7 +14,7 @@ export const Header = () => {
         <SearchAutocomplete />
       </Grid>
 
-      <HeaderTabs />
+     <Grid paddingRight={5} > <HeaderTabs /></Grid>
       <SideIcons />
     </Grid>
   );

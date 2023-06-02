@@ -18,12 +18,9 @@ export const Reels = () => {
             <Card sx={{ width: 120, height: 200 }}>
               <CardActionArea>
                 <CardMedia
-                // component="img"
-                // height="150"
-                // src={x.src}
-                // alt="green iguana"
+
                 >
-                  {" "}
+      
                   <img src={x.src} loading="lazy" alt="" />
                 </CardMedia>
                 <CardContent sx={{ backgroundColor: "#ffff", minHeight: 20 }}>

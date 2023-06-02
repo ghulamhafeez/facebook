@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import AccountCircleIcon from "@mui/icons-material/AccountCircleTwoTone";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";

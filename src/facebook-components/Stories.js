@@ -16,32 +16,21 @@ export const Stories = () => {
       {StoriesData.map((x) => {
         return (
           <SwiperSlide>
-            <Card sx={{ width: 120, height: 200 }}>
-              <CardActionArea>
-                <CardMedia
-                // component="img"
-                // height="150"
-                // src={x.src}
-                // alt="green iguana"
-                >
-                  {" "}
-                  <img src={x.src} loading="lazy" alt="" />
-                </CardMedia>
-
-                <CardContent sx={{ backgroundColor: "#ffff", height: 20 }}>
-                  <Typography
-                    sx={{
-                      fontSize: 14,
-                      textAlign: "center",
-                      color: "grey",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {x.title}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
+            <Card sx={{ width: 120, maxHeight: 200 }}>
+              <CardMedia>
+                <img src={x.src} loading="lazy" alt="" />
+              </CardMedia>
             </Card>
+            <Typography
+              sx={{
+                fontSize: 14,
+                textAlign: "center",
+                color: "black",
+                fontWeight: "bold",
+              }}
+            >
+              {x.title}
+            </Typography>
           </SwiperSlide>
         );
       })}

@@ -55,7 +55,7 @@ export const PostCards = () => {
               }}
             >
               <p>{x.Comments} Comments</p>
-              {""}
+      
               <p>{x.shares} Shares</p>
             </Grid>
           </Grid>
@@ -76,9 +76,7 @@ export const PostCards = () => {
             <ShareIcon sx={{ color: "grey", height: 24, width: 28 }} />
             Share
           </Button>
-          {/* <AccountCircleIcon
-            sx={{ pt: 1, height: 30, width: 30, color: "#606266" }}
-          /> */}
+   
         </CardActions>
       </Card>
     );

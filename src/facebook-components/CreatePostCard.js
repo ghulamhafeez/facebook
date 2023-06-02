@@ -6,7 +6,7 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import VideoCameraBackIcon from "@mui/icons-material/VideoCameraBack";
 import AccountCircleIcon from "@mui/icons-material/AccountCircleTwoTone";
-import { CreatePostModal } from "./CreatePostModal";
+import { CreatePostDialog } from "./CreatePostDialog";
 import { Button, CardActions } from "@mui/material";
 import Grid from "@mui/material/Grid";
 export const CreatePostCard = () => {
@@ -43,20 +43,23 @@ export const CreatePostCard = () => {
             <VideoCameraBackIcon sx={{ color: "red", height: 24, width: 28 }} />{" "}
             Live video
           </Button>
-          <Button size="small" color="primary">
-            <PhotoLibraryIcon sx={{ color: "green", height: 24, width: 28 }} />{" "}
+          <Button size="small" color="primary"   onClick={() => openPostModal()}>
+            <PhotoLibraryIcon
+              sx={{ color: "green", height: 24, width: 28 }}
+            
+            />
             Photo/video
           </Button>
           <Button size="small" color="primary">
             <SentimentVerySatisfiedIcon
               sx={{ color: "yellow", height: 24, width: 28 }}
-            />{" "}
-            Feeling/activity{" "}
+            />
+            Feeling/activity
           </Button>
         </CardActions>
       </Card>
 
-      <CreatePostModal open={open} setOpen={setOpen} />
+      <CreatePostDialog open={open} setOpen={setOpen} />
     </Grid>
   );
 };

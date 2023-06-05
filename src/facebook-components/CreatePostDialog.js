@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
-import { Button, CardHeader } from "@mui/material";
+import { addPost } from "../services/FacebookService";
+import { Button } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircleTwoTone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
@@ -16,16 +14,17 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 export const CreatePostDialog = ({ open, setOpen }) => {
+  const [postValue , setPostValue] = useState("")
   const style = {
-    // position: "absolute",
     top: "50%",
     left: "50%",
-    // transform: "translate(-50%, -50%)",
     width: 440,
-    // bgcolor: "background.paper",
-    // boxShadow: 24,
     p: 4,
   };
+
+  const handlePost =()=>{
+    addPost(postValue)
+  }
   return (
     <Dialog keepMounted open={open} closeAfterTransition>
       <Box sx={style}>
@@ -45,19 +44,17 @@ export const CreatePostDialog = ({ open, setOpen }) => {
           />
         </Box>
         <hr></hr>
-        <DialogTitle sx={{ ml: -3, display: "flex",gap:2 }}>
-          <AccountCircleIcon sx={{ height: 42, width: 42 ,pt:2}} />
+        <DialogTitle sx={{ ml: -3, display: "flex", gap: 2 }}>
+          <AccountCircleIcon sx={{ height: 42, width: 42, pt: 2 }} />
           <h4>Hello Boy</h4>
         </DialogTitle>
-        <Typography
-          id="keep-mounted-modal-title"
-          variant="h6"
-          component="h3"
-          sx={{ pb: 6 }}
-        >
-          What's on your mind, Boy
-        </Typography>
-
+        <TextField
+          id="standard-basic"
+          label=" What's on your mind, Boy"
+          variant="standard"
+          sx={{ pb: 5, width: 300 }}
+          onChange={(e)=> setPostValue(e.target.value)}
+        />
         <Box
           sx={{
             display: "flex",
@@ -88,7 +85,7 @@ export const CreatePostDialog = ({ open, setOpen }) => {
 
           <MoreHorizIcon sx={{ color: "grey", height: 24, width: 28, pt: 2 }} />
         </Box>
-        <Button sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }}>
+        <Button sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }} onClick={()=>handlePost()}>
           Post
         </Button>
       </Box>

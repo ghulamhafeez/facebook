@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -10,9 +10,19 @@ import ShareIcon from "@mui/icons-material/Share";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAltTwoTone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import MoreHorizIcon from "@mui/icons-material/MoreVert";
+import { getPosts } from "../services/FacebookService";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfiedTwoTone";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
 export const PostCards = () => {
+  const [post, setPost] = useState([]);
+
+  useEffect(() => {
+    getPosts((res) => {
+      // setPost(res);
+      console.log("res")
+    });
+  }, []);
+
   return PostData.map((x) => {
     return (
       <Card sx={{ minWidth: 275, borderRadius: 3, mt: 2 }}>
@@ -55,7 +65,7 @@ export const PostCards = () => {
               }}
             >
               <p>{x.Comments} Comments</p>
-      
+
               <p>{x.shares} Shares</p>
             </Grid>
           </Grid>
@@ -76,7 +86,6 @@ export const PostCards = () => {
             <ShareIcon sx={{ color: "grey", height: 24, width: 28 }} />
             Share
           </Button>
-   
         </CardActions>
       </Card>
     );

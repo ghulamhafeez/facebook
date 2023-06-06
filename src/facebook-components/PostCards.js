@@ -4,26 +4,35 @@ import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { PostData } from "../constants/Constants";
-import { Button, CardActions, CardMedia, CardHeader } from "@mui/material";
+import {
+  Button,
+  CardActions,
+  CardMedia,
+  CardHeader,
+  Typography,
+} from "@mui/material";
 import Grid from "@mui/material/Grid";
 import ShareIcon from "@mui/icons-material/Share";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAltTwoTone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import MoreHorizIcon from "@mui/icons-material/MoreVert";
-import { getPosts } from "../services/FacebookService";
+// import { getPosts } from "../services/FacebookService";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfiedTwoTone";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
 export const PostCards = () => {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
-    getPosts((res) => {
-      // setPost(res);
-      console.log("res")
-    });
+    getPosts();
   }, []);
 
-  return PostData.map((x) => {
+  const getPosts = () => {
+    console.log("called");
+    fetch("http://localhost:3000/post")
+      .then((res) => res.json())
+      .then((data) => setPost(data));
+  };
+  return post.map((x) => {
     return (
       <Card sx={{ minWidth: 275, borderRadius: 3, mt: 2 }}>
         <CardHeader
@@ -37,12 +46,13 @@ export const PostCards = () => {
               <MoreHorizIcon />
             </IconButton>
           }
-          title={x.title}
+          title={x.name}
           subheader={x.time}
         />
-        <CardMedia>
+        {/* <CardMedia>
           <img src={x.img} loading="lazy" alt="" />
-        </CardMedia>
+        </CardMedia> */}
+        <Typography sx={{textAlign:"center" ,fontSize:"30px"}}>{x.name}</Typography>
         <Box sx={{ width: "100%", display: "flex", gap: 3, mt: 1, pl: 3 }}>
           <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
             <Grid>

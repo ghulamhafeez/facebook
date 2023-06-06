@@ -14,7 +14,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 export const CreatePostDialog = ({ open, setOpen }) => {
-  const [postValue , setPostValue] = useState("")
+  const [postValue, setPostValue] = useState("");
   const style = {
     top: "50%",
     left: "50%",
@@ -22,9 +22,9 @@ export const CreatePostDialog = ({ open, setOpen }) => {
     p: 4,
   };
 
-  const handlePost =()=>{
-    addPost(postValue)
-  }
+  const handlePost = () => {
+    addPost(postValue);
+  };
   return (
     <Dialog keepMounted open={open} closeAfterTransition>
       <Box sx={style}>
@@ -53,7 +53,7 @@ export const CreatePostDialog = ({ open, setOpen }) => {
           label=" What's on your mind, Boy"
           variant="standard"
           sx={{ pb: 5, width: 300 }}
-          onChange={(e)=> setPostValue(e.target.value)}
+          onChange={(e) => setPostValue(e.target.value)}
         />
         <Box
           sx={{
@@ -85,7 +85,10 @@ export const CreatePostDialog = ({ open, setOpen }) => {
 
           <MoreHorizIcon sx={{ color: "grey", height: 24, width: 28, pt: 2 }} />
         </Box>
-        <Button sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }} onClick={()=>handlePost()}>
+        <Button
+          sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }}
+          onClick={() => handlePost()}
+        >
           Post
         </Button>
       </Box>

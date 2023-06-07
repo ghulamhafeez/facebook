@@ -13,8 +13,18 @@ import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfi
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-export const CreatePostDialog = ({ open, setOpen }) => {
-  const [postValue, setPostValue] = useState("");
+import { updatePost } from "../services/FacebookService";
+import { getPosts } from "../services/FacebookService";
+export const CreatePostDialog = ({
+  open,
+  setOpen,
+  name,
+  isEdit,
+  setisEdit,
+  id,
+}) => {
+  console.log("ENAme", name);
+  const [postValue, setPostValue] = useState(isEdit ? name : "");
   const style = {
     top: "50%",
     left: "50%",
@@ -24,15 +34,27 @@ export const CreatePostDialog = ({ open, setOpen }) => {
 
   const handlePost = () => {
     addPost(postValue);
+    setOpen(false);
+    setPostValue('')
+    // getPosts()
   };
+  const handleUpdate = () => {
+    updatePost(postValue, id)
+    setOpen(false);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setisEdit(false);
+  };
+
   return (
     <Dialog keepMounted open={open} closeAfterTransition>
       <Box sx={style}>
-        <Box sx={{ display: "flex", gap: 16, mt: -3, pl: 18 }}>
-          <h2>Create Post</h2>
-
+        <Box sx={{ display: "flex", gap: 16, mt: -3, pl: 16 }}>
+          {isEdit ? <h2>Update Post</h2> : <h2>Create Post</h2>}
           <CloseIcon
-            onClick={() => setOpen(false)}
+            onClick={() => handleClose()}
             sx={{
               mt: 2,
               height: 38,
@@ -53,6 +75,7 @@ export const CreatePostDialog = ({ open, setOpen }) => {
           label=" What's on your mind, Boy"
           variant="standard"
           sx={{ pb: 5, width: 300 }}
+          value={postValue}
           onChange={(e) => setPostValue(e.target.value)}
         />
         <Box
@@ -85,12 +108,21 @@ export const CreatePostDialog = ({ open, setOpen }) => {
 
           <MoreHorizIcon sx={{ color: "grey", height: 24, width: 28, pt: 2 }} />
         </Box>
-        <Button
-          sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }}
-          onClick={() => handlePost()}
-        >
-          Post
-        </Button>
+        {isEdit ? (
+          <Button
+            sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }}
+            onClick={() => handleUpdate()}
+          >
+            Update
+          </Button>
+        ) : (
+          <Button
+            sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }}
+            onClick={() => handlePost()}
+          >
+            Post
+          </Button>
+        )}
       </Box>
     </Dialog>
   );

@@ -9,11 +9,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircleTwoTone";
 import { CreatePostDialog } from "./CreatePostDialog";
 import { Button, CardActions } from "@mui/material";
 import Grid from "@mui/material/Grid";
-export const CreatePostCard = () => {
-  const [open, setOpen] = React.useState(false);
-  const openPostModal = () => {
-    setOpen(true);
-  };
+export const CreatePostCard = ({openPostModal ,setOpen ,open ,name,isEdit,setisEdit,id}) => {
+  // const [open, setOpen] = React.useState(false);
+  // const openPostModal = () => {
+  //   setOpen(true);
+  // };
   return (
     <Grid>
       <Card sx={{ minWidth: 275, borderRadius: 3 }}>
@@ -59,7 +59,7 @@ export const CreatePostCard = () => {
         </CardActions>
       </Card>
 
-      <CreatePostDialog open={open} setOpen={setOpen} />
+      <CreatePostDialog open={open} setOpen={setOpen} id={id} name={name} setisEdit={setisEdit} isEdit={isEdit}/>
     </Grid>
   );
 };

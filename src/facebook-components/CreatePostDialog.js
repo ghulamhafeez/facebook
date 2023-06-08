@@ -14,17 +14,16 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import AssistantPhotoIcon from "@mui/icons-material/AssistantPhoto";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import { updatePost } from "../services/FacebookService";
-import { getPosts } from "../services/FacebookService";
 export const CreatePostDialog = ({
   open,
   setOpen,
   name,
   isEdit,
   setisEdit,
+  getData,
   id,
 }) => {
-  console.log("ENAme", name);
-  const [postValue, setPostValue] = useState(isEdit ? name : "");
+  const [postValue, setPostValue] = useState(open && isEdit ? name : "");
   const style = {
     top: "50%",
     left: "50%",
@@ -33,14 +32,18 @@ export const CreatePostDialog = ({
   };
 
   const handlePost = () => {
-    addPost(postValue);
+    addPost(postValue).then(() => getData());
     setOpen(false);
-    setPostValue('')
-    // getPosts()
+    setPostValue("");
+    getData();
   };
   const handleUpdate = () => {
-    updatePost(postValue, id)
+    updatePost(postValue, id).then(() => getData());
+
+    setPostValue("");
+    setisEdit(false);
     setOpen(false);
+    getData();
   };
 
   const handleClose = () => {

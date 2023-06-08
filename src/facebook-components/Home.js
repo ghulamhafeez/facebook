@@ -3,7 +3,10 @@ import { CreatePostCard } from "./CreatePostCard";
 import { Grid } from "@mui/material";
 import { PostCards } from "./PostCards";
 import { MediaCard } from "./MediaCard";
+import { getPosts } from "../services/FacebookService";
+import { CreatePostDialog } from "./CreatePostDialog";
 export const Home = () => {
+  const [post, setPost] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [id, setId] = React.useState();
   const [name, setName] = React.useState("");
@@ -12,28 +15,30 @@ export const Home = () => {
     setOpen(true);
   };
   const setValue = (name) => {
-    console.log("name", name);
     setName(name);
   };
   const setUpdateId = (id) => {
-    console.log("update",id ,name)
-
     setId(id);
   };
-  
+  const getData = () => {
+    getPosts().then((data) => setPost(data));
+  };
   return (
     <Grid sx={{ direction: "column" }}>
       <MediaCard />
       <Grid sx={{ pt: 3 }}>
-        <CreatePostCard
-          open={open}
-          setOpen={setOpen}
-          openPostModal={openPostModal}
-          name={name}
-          id={id}
-          isEdit={isEdit}
-          setisEdit={setisEdit}
-        />
+        <CreatePostCard open={open} openPostModal={openPostModal} />
+        {open && (
+          <CreatePostDialog
+            open={open}
+            getData={() => getData()}
+            setOpen={setOpen}
+            id={id}
+            name={name}
+            setisEdit={setisEdit}
+            isEdit={isEdit}
+          />
+        )}
       </Grid>
       <Grid sx={{ pt: 3 }}>
         <PostCards
@@ -41,8 +46,10 @@ export const Home = () => {
           setOpen={setOpen}
           openPostModal={openPostModal}
           setValue={(name) => setValue(name)}
-          setUpdateId={(id)=>setUpdateId(id)}
+          setUpdateId={(id) => setUpdateId(id)}
           setisEdit={setisEdit}
+          getData={() => getData()}
+          post={post}
         />
       </Grid>
     </Grid>

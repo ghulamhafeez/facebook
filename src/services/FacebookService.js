@@ -1,5 +1,4 @@
 export const addPost = (data) => {
-  console.log("data", data);
   return fetch("http://localhost:3000/post", {
     method: "POST",
     headers: {
@@ -17,9 +16,7 @@ export const deletePost = (id) => {
   });
 };
 
-
 export const updatePost = (data, id) => {
-  console.log("up",data,id)
   const myData = { name: data };
 
   return fetch(`http://localhost:3000/post/${id}`, {
@@ -28,7 +25,7 @@ export const updatePost = (data, id) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(()=> getPosts())
+  }).then(() => getPosts());
 };
 
 export const getPosts = () => {

@@ -6,14 +6,9 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import VideoCameraBackIcon from "@mui/icons-material/VideoCameraBack";
 import AccountCircleIcon from "@mui/icons-material/AccountCircleTwoTone";
-import { CreatePostDialog } from "./CreatePostDialog";
 import { Button, CardActions } from "@mui/material";
 import Grid from "@mui/material/Grid";
-export const CreatePostCard = ({openPostModal ,setOpen ,open ,name,isEdit,setisEdit,id}) => {
-  // const [open, setOpen] = React.useState(false);
-  // const openPostModal = () => {
-  //   setOpen(true);
-  // };
+export const CreatePostCard = ({ openPostModal }) => {
   return (
     <Grid>
       <Card sx={{ minWidth: 275, borderRadius: 3 }}>
@@ -43,11 +38,8 @@ export const CreatePostCard = ({openPostModal ,setOpen ,open ,name,isEdit,setisE
             <VideoCameraBackIcon sx={{ color: "red", height: 24, width: 28 }} />{" "}
             Live video
           </Button>
-          <Button size="small" color="primary"   onClick={() => openPostModal()}>
-            <PhotoLibraryIcon
-              sx={{ color: "green", height: 24, width: 28 }}
-            
-            />
+          <Button size="small" color="primary" onClick={() => openPostModal()}>
+            <PhotoLibraryIcon sx={{ color: "green", height: 24, width: 28 }} />
             Photo/video
           </Button>
           <Button size="small" color="primary">
@@ -58,8 +50,6 @@ export const CreatePostCard = ({openPostModal ,setOpen ,open ,name,isEdit,setisE
           </Button>
         </CardActions>
       </Card>
-
-      <CreatePostDialog open={open} setOpen={setOpen} id={id} name={name} setisEdit={setisEdit} isEdit={isEdit}/>
     </Grid>
   );
 };

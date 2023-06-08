@@ -11,7 +11,6 @@ import ShareIcon from "@mui/icons-material/Share";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAltTwoTone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import MoreHorizIcon from "@mui/icons-material/MoreVert";
-import { getPosts } from "../services/FacebookService";
 import { deletePost } from "../services/FacebookService";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfiedTwoTone";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
@@ -20,14 +19,15 @@ export const PostCards = ({
   setValue,
   setUpdateId,
   setisEdit,
+  getData,
+  post,
 }) => {
-  const [post, setPost] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
   const [selectedName, setSelectedName] = useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event, { name, _id }) => {
-    console.log("asd", _id, name);
     setAnchorEl(event.currentTarget);
     setSelectedId(_id);
     setSelectedName(name);
@@ -38,10 +38,6 @@ export const PostCards = ({
   useEffect(() => {
     getData();
   }, []);
-
-  const getData = () => {
-    getPosts().then((data) => setPost(data));
-  };
 
   const handleDelete = () => {
     return deletePost(selectedId).then(() => getData());
@@ -54,7 +50,7 @@ export const PostCards = ({
     setisEdit(true);
   };
 
-  return post.map((x) => {
+  return post.slice(0).reverse().map((x) => {
     return (
       <Card sx={{ minWidth: 275, borderRadius: 3, mt: 2 }}>
         <CardHeader
@@ -68,19 +64,12 @@ export const PostCards = ({
               aria-label="settings"
               sx={{ justifyContent: "space-between" }}
             >
-              {/* <Button onClick={()=>handleDelete(x)}>Delete</Button>
-            <Button onClick={()=>handleEdit(x)}>Edit</Button> */}
-
               <MoreHorizIcon onClick={(e) => handleClick(e, x)} />
             </IconButton>
           }
           title={x.name}
           subheader={x.time}
         />
-
-        {/* <CardMedia>
-          <img src={x.img} loading="lazy" alt="" />
-        </CardMedia> */}
         <Typography sx={{ textAlign: "center", fontSize: "30px" }}>
           {x.name}
         </Typography>

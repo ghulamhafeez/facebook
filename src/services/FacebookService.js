@@ -1,13 +1,9 @@
 import axios from "axios";
 
 export const addPost = (formData) => {
-  console.log("formData2", formData);
-  // const formHeaders = formData.getHeaders();
   return axios
     .post("http://localhost:3000/post", formData, {
       method: "POST",
-      // headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(formData),
     })
     .then((res) => console.log(res));
 };

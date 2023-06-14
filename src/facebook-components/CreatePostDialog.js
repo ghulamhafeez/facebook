@@ -27,7 +27,6 @@ export const CreatePostDialog = ({
   const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
-    console.log("Ev", event.target.files[0]);
     setFile(event.target.files[0]);
   };
   const style = {
@@ -37,21 +36,15 @@ export const CreatePostDialog = ({
     p: 4,
   };
 
-  const handleSubmit = async  (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
 
-      formData.append('file', file)
-      formData.append('name', postValue)
-      
-      console.log("formData1",formData.get('file', file ,name))
-      // var options = { content: formData };
-      
-      // http.call( 'POST','http://localhost:3000/post', options ,function( error, response ) {
-      //   if ( error ) {console.log( error );}else{console.log(response)}}).then(getData());
-      
-      await  addPost(formData).then(() => getData());
+    formData.append("file", file);
+    formData.append("name", postValue);
+
+    await addPost(formData).then(() => getData());
     setOpen(false);
     setPostValue("");
     getData();
@@ -117,10 +110,11 @@ export const CreatePostDialog = ({
             border: "1px solid grey",
             borderRadius: 3,
             height: 50,
-            width: 430,
+            width: 432,
             pr: 1,
             pl: 1,
             pb: 1,
+            mt: 2,
           }}
         >
           <h4 style={{ mr: 2, pt: -2 }}>

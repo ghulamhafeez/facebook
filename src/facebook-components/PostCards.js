@@ -60,7 +60,6 @@ export const PostCards = ({
     .slice(0)
     .reverse()
     .map((x) => {
-      console.log("x", x);
       return (
         <Card sx={{ minWidth: 275, borderRadius: 3, mt: 2 }}>
           <CardHeader
@@ -83,19 +82,8 @@ export const PostCards = ({
           <Typography sx={{ textAlign: "center", fontSize: "30px" }}>
             {x.name}
           </Typography>
-          <img
-            src={x.file}
-            // srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
-            loading="lazy"
-            alt=""
-            width="600"
-            height="600"
-          />
-          {/* <CardMedia
-        sx={{ height: 140 }}
-        image={{x.file}}
-        title="green iguana"
-      /> */}
+          <img src={x.file} loading="lazy" alt="" width="600" height="600" />
+
           <Box sx={{ width: "100%", display: "flex", gap: 3, mt: 1, pl: 3 }}>
             <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
               <Menu

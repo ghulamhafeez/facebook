@@ -3,7 +3,13 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import { Button, CardActions, CardHeader, Typography } from "@mui/material";
+import {
+  Button,
+  CardMedia,
+  CardActions,
+  CardHeader,
+  Typography,
+} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Grid from "@mui/material/Grid";
@@ -50,115 +56,134 @@ export const PostCards = ({
     setisEdit(true);
   };
 
-  return post.slice(0).reverse().map((x) => {
-    return (
-      <Card sx={{ minWidth: 275, borderRadius: 3, mt: 2 }}>
-        <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: x.color }} aria-label="recipe">
-              {x.avatar}
-            </Avatar>
-          }
-          action={
-            <IconButton
-              aria-label="settings"
-              sx={{ justifyContent: "space-between" }}
-            >
-              <MoreHorizIcon onClick={(e) => handleClick(e, x)} />
-            </IconButton>
-          }
-          title={x.name}
-          subheader={x.time}
-        />
-        <Typography sx={{ textAlign: "center", fontSize: "30px" }}>
-          {x.name}
-        </Typography>
-        <Box sx={{ width: "100%", display: "flex", gap: 3, mt: 1, pl: 3 }}>
-          <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Menu
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
+  return post
+    .slice(0)
+    .reverse()
+    .map((x) => {
+      console.log("x", x);
+      return (
+        <Card sx={{ minWidth: 275, borderRadius: 3, mt: 2 }}>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: x.color }} aria-label="recipe">
+                {x.avatar}
+              </Avatar>
+            }
+            action={
+              <IconButton
+                aria-label="settings"
+                sx={{ justifyContent: "space-between" }}
+              >
+                <MoreHorizIcon onClick={(e) => handleClick(e, x)} />
+              </IconButton>
+            }
+            title={x.name}
+            subheader={x.time}
+          />
+          <Typography sx={{ textAlign: "center", fontSize: "30px" }}>
+            {x.name}
+          </Typography>
+          <img
+            src={x.file}
+            // srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
+            loading="lazy"
+            alt=""
+            width="600"
+            height="600"
+          />
+          {/* <CardMedia
+        sx={{ height: 140 }}
+        image={{x.file}}
+        title="green iguana"
+      /> */}
+          <Box sx={{ width: "100%", display: "flex", gap: 3, mt: 1, pl: 3 }}>
+            <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
                   },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem onClick={handleClose}>
-                <Button onClick={() => handleDelete()}>Delete</Button>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Button onClick={() => handleEdit()}>Edit</Button>
-              </MenuItem>
-            </Menu>
-            <Grid>
-              <ThumbUpOffAltIcon
-                sx={{ color: "blue", height: 24, width: 28 }}
-              />
-              <SentimentVerySatisfiedIcon
-                sx={{ color: "yellow", height: 24, width: 28 }}
-              />
-              <SentimentVeryDissatisfiedIcon
-                sx={{ color: "red", height: 24, width: 28 }}
-              />
-            </Grid>
-            <Grid
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                mt: -2,
-                pl: 35,
-              }}
-            >
-              <p>{x.Comments} Comments</p>
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <MenuItem onClick={handleClose}>
+                  <Button onClick={() => handleDelete()}>Delete</Button>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Button onClick={() => handleEdit()}>Edit</Button>
+                </MenuItem>
+              </Menu>
+              <Grid>
+                <ThumbUpOffAltIcon
+                  sx={{ color: "blue", height: 24, width: 28 }}
+                />
+                <SentimentVerySatisfiedIcon
+                  sx={{ color: "yellow", height: 24, width: 28 }}
+                />
+                <SentimentVeryDissatisfiedIcon
+                  sx={{ color: "red", height: 24, width: 28 }}
+                />
+              </Grid>
+              <Grid
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  mt: -2,
+                  pl: 35,
+                }}
+              >
+                <p>{x.Comments} Comments</p>
 
-              <p>{x.shares} Shares</p>
+                <p>{x.shares} Shares</p>
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
-        <hr></hr>
-        <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
-          <Button size="small" color="primary">
-            <ThumbUpOffAltIcon sx={{ color: "grey", height: 24, width: 28 }} />
-            Like
-          </Button>
-          <Button size="small" color="primary">
-            <ChatBubbleOutlineIcon
-              sx={{ color: "grey", height: 24, width: 28 }}
-            />
-            Comment
-          </Button>
-          <Button size="small" color="primary">
-            <ShareIcon sx={{ color: "grey", height: 24, width: 28 }} />
-            Share
-          </Button>
-        </CardActions>
-      </Card>
-    );
-  });
+          </Box>
+          <hr></hr>
+          <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
+            <Button size="small" color="primary">
+              <ThumbUpOffAltIcon
+                sx={{ color: "grey", height: 24, width: 28 }}
+              />
+              Like
+            </Button>
+            <Button size="small" color="primary">
+              <ChatBubbleOutlineIcon
+                sx={{ color: "grey", height: 24, width: 28 }}
+              />
+              Comment
+            </Button>
+            <Button size="small" color="primary">
+              <ShareIcon sx={{ color: "grey", height: 24, width: 28 }} />
+              Share
+            </Button>
+          </CardActions>
+        </Card>
+      );
+    });
 };

@@ -24,6 +24,12 @@ export const CreatePostDialog = ({
   id,
 }) => {
   const [postValue, setPostValue] = useState(open && isEdit ? name : "");
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    console.log("Ev", event.target.files[0]);
+    setFile(event.target.files[0]);
+  };
   const style = {
     top: "50%",
     left: "50%",
@@ -31,12 +37,26 @@ export const CreatePostDialog = ({
     p: 4,
   };
 
-  const handlePost = () => {
-    addPost(postValue).then(() => getData());
+  const handleSubmit = async  (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+
+      formData.append('file', file)
+      formData.append('name', postValue)
+      
+      console.log("formData1",formData.get('file', file ,name))
+      // var options = { content: formData };
+      
+      // http.call( 'POST','http://localhost:3000/post', options ,function( error, response ) {
+      //   if ( error ) {console.log( error );}else{console.log(response)}}).then(getData());
+      
+      await  addPost(formData).then(() => getData());
     setOpen(false);
     setPostValue("");
     getData();
   };
+
   const handleUpdate = () => {
     updatePost(postValue, id).then(() => getData());
 
@@ -81,6 +101,15 @@ export const CreatePostDialog = ({
           value={postValue}
           onChange={(e) => setPostValue(e.target.value)}
         />
+
+        <input
+          className="form-control-file mb-3"
+          type="file"
+          id="file"
+          accept=".jpg"
+          multiple
+          onChange={handleFileChange}
+        />
         <Box
           sx={{
             display: "flex",
@@ -94,7 +123,9 @@ export const CreatePostDialog = ({
             pb: 1,
           }}
         >
-          <h4 style={{ mr: 2, pt: -2 }}>Add to your post</h4>
+          <h4 style={{ mr: 2, pt: -2 }}>
+            {isEdit ? "Update Post" : "Add to your post"}
+          </h4>
           <PhotoLibraryIcon
             sx={{ color: "green", height: 24, width: 28, pt: 2 }}
           />
@@ -121,7 +152,7 @@ export const CreatePostDialog = ({
         ) : (
           <Button
             sx={{ backgroundColor: "lightblue", width: 450, mt: 3 }}
-            onClick={() => handlePost()}
+            onClick={handleSubmit}
           >
             Post
           </Button>

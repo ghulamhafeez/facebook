@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { PostCards } from "./PostCards";
 import { MediaCard } from "./MediaCard";
 import { getPosts } from "../services/FacebookService";
+import {useGetPostQuery} from '../services/FacebookService'
 import { CreatePostDialog } from "./CreatePostDialog";
 export const Home = () => {
   const [post, setPost] = React.useState([]);
@@ -20,9 +21,13 @@ export const Home = () => {
   const setUpdateId = (id) => {
     setId(id);
   };
+  const { data  } = useGetPostQuery();
+  console.log('data' ,data)
   const getData = () => {
+    // const { data =[] } = useGetPostQuery();
     getPosts().then((data) => setPost(data));
   };
+
   return (
     <Grid sx={{ direction: "column" }}>
       <MediaCard />

@@ -19,6 +19,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
+export const BASE_URL= 'http://localhost:3000/'
+
 export const sideBarData = [
   { name: "Ghulam Muhammad", Icon: AccountCircleIcon },
   { name: "Friends", Icon: GroupIcon },

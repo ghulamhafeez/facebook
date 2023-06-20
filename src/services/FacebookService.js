@@ -1,4 +1,25 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from "../constants/Constants";
 import axios from "axios";
+
+export const FacebookApi = createApi({
+  reducerPath: "FacebookApi",
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  endpoints: (builder) => ({
+    getPost: builder.query({
+      query: () => `post`,
+    }),
+    // addPost: builder.query({
+    //   query: () => `post`,
+    // }),
+    // deletePost: builder.query({
+    //   query: (id) => `post/${id}`,
+    // }),
+    // updatePost: builder.query({
+    //   query: (id) => `post/${id}`,
+    // }),
+  }),
+});
 
 export const addPost = (formData) => {
   return axios
@@ -29,3 +50,10 @@ export const updatePost = (data, id) => {
 export const getPosts = () => {
   return fetch("http://localhost:3000/post").then((res) => res.json());
 };
+
+export const {
+  useGetPostQuery,
+  // useAddPostQuery,
+  // useDeletePostQuery,
+  // useUpdatePostQuery,
+} = FacebookApi;

@@ -3,8 +3,8 @@ import { CreatePostCard } from "./CreatePostCard";
 import { Grid } from "@mui/material";
 import { PostCards } from "./PostCards";
 import { MediaCard } from "./MediaCard";
-import { getPosts } from "../services/FacebookService";
-import {useGetPostQuery} from '../services/FacebookService'
+// import { getPosts } from "../services/FacebookService";
+import { useGetPostsQuery } from "../services/FacebookService";
 import { CreatePostDialog } from "./CreatePostDialog";
 export const Home = () => {
   const [post, setPost] = React.useState([]);
@@ -21,11 +21,14 @@ export const Home = () => {
   const setUpdateId = (id) => {
     setId(id);
   };
-  const { data  } = useGetPostQuery();
-  console.log('data' ,data)
+
+  const { data =[] } = useGetPostsQuery();
+
   const getData = () => {
-    // const { data =[] } = useGetPostQuery();
-    getPosts().then((data) => setPost(data));
+    // let { data =[] } = useGetPostQuery();
+    // getPosts().then((data) =>
+    console.log("data",data)
+    setPost(data);
   };
 
   return (

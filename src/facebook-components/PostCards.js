@@ -18,6 +18,7 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAltTwoTone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import MoreHorizIcon from "@mui/icons-material/MoreVert";
 import { deletePost } from "../services/FacebookService";
+// import {useDeletePostQuery} from '../services/FacebookService'
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfiedTwoTone";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfiedTwoTone";
 export const PostCards = ({
@@ -33,6 +34,7 @@ export const PostCards = ({
   const [selectedName, setSelectedName] = useState(null);
   const open = Boolean(anchorEl);
 
+
   const handleClick = (event, { name, _id }) => {
     setAnchorEl(event.currentTarget);
     setSelectedId(_id);
@@ -45,8 +47,14 @@ export const PostCards = ({
     getData();
   }, []);
 
+ 
+  // const [deletePost,response] = useDeletePostQuery()
   const handleDelete = () => {
-    return deletePost(selectedId).then(() => getData());
+
+    // deletePost(selectedId)
+    // console.log("del",deletePost)
+
+    deletePost(selectedId)
   };
 
   const handleEdit = () => {

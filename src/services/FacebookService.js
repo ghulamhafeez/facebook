@@ -6,28 +6,48 @@ export const FacebookApi = createApi({
   reducerPath: "FacebookApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getPost: builder.query({
+    getPosts: builder.query({
       query: () => `post`,
+      providesTags: ['Post']
     }),
-    // addPost: builder.query({
-    //   query: () => `post`,
-    // }),
-    // deletePost: builder.query({
-    //   query: (id) => `post/${id}`,
-    // }),
+
+    addPost: builder.query({
+      query: (formData) => ({
+        url: "post",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ['Post']
+    }),
+
+    deletePost: builder.query({
+      query: (id) =>
+        ({
+          url: `posts/${id}`,
+          method: "DELETE",
+          credentials: 'include',
+        }),
+        invalidatesTags: ['Post']
+    }),
+
     // updatePost: builder.query({
-    //   query: (id) => `post/${id}`,
+    //   query: (data, id) => ({
+    //     url: `posts/${id}`,
+    //     method: "PUT",
+    //   }),
+    //   invalidatesTags: ['Post']
+
     // }),
   }),
 });
 
-export const addPost = (formData) => {
-  return axios
-    .post("http://localhost:3000/post", formData, {
-      method: "POST",
-    })
-    .then((res) => console.log(res));
-};
+// export const addPost = (formData) => {
+//   return axios
+//     .post("http://localhost:3000/post", formData, {
+//       method: "POST",
+//     })
+//     .then((res) => console.log(res));
+// };
 
 export const deletePost = (id) => {
   return fetch(`http://localhost:3000/post/${id}`, {
@@ -44,16 +64,16 @@ export const updatePost = (data, id) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(() => getPosts());
+  });
 };
 
-export const getPosts = () => {
-  return fetch("http://localhost:3000/post").then((res) => res.json());
-};
+// export const getPosts = () => {
+//   return fetch("http://localhost:3000/post").then((res) => res.json());
+// };
 
 export const {
-  useGetPostQuery,
-  // useAddPostQuery,
-  // useDeletePostQuery,
-  // useUpdatePostQuery,
+  useGetPostsQuery,
+  useAddPostQuery,
+  useDeletePostQuery,
+  useUpdatePostQuery,
 } = FacebookApi;

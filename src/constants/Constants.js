@@ -19,7 +19,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-export const BASE_URL= 'http://localhost:3000/'
+export const BASE_URL = "http://localhost:3000/";
+
+export const friendReq = [
+  { name: "Muhammad Abid" },
+  { name: "Babr Azam" },
+  { name: "Saif Ali" },
+  { name: "Yousaf Khan" },
+  { name: "Naseem Shah" },
+];
 
 export const sideBarData = [
   { name: "Ghulam Muhammad", Icon: AccountCircleIcon },
@@ -110,8 +118,40 @@ export const text = [
 ];
 
 export const PostData = [
-  { avatar: "H", time: "1h", Comments: "35", shares: "11",  title: "Hello World", color: "green" ,img: 'https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=600'},
-  { avatar: "C",  time: "2d", Comments: "315", shares: "64",  title: "Cricket", color: "orange" , img: "https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=600" },
-  { avatar: "G",  time: "19h", Comments: "59", shares: "19",  title: "Game Zones", color: "brown" ,img: 'https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=600'},
-  { avatar: "P",  time: "6h",  Comments: "117", shares: "23", title: "Pak Wheels", color: "purple", img: "https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=600" },
+  {
+    avatar: "H",
+    time: "1h",
+    Comments: "35",
+    shares: "11",
+    title: "Hello World",
+    color: "green",
+    img: "https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=600",
+  },
+  {
+    avatar: "C",
+    time: "2d",
+    Comments: "315",
+    shares: "64",
+    title: "Cricket",
+    color: "orange",
+    img: "https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=600",
+  },
+  {
+    avatar: "G",
+    time: "19h",
+    Comments: "59",
+    shares: "19",
+    title: "Game Zones",
+    color: "brown",
+    img: "https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=600",
+  },
+  {
+    avatar: "P",
+    time: "6h",
+    Comments: "117",
+    shares: "23",
+    title: "Pak Wheels",
+    color: "purple",
+    img: "https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=600",
+  },
 ];

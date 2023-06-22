@@ -58,10 +58,10 @@ export const userSignUp = (data) => {
     .then((res) => console.log(res));
 };
 
-export const userLogin = (data) => {
+export const userLogIn = (data) => {
   console.log("data",data)
   return axios
-    .post("http://localhost:3000/login", data, {
+    .post("http://localhost:3000/post/login", data, {
       method: "POST",
     })
     .then((res) => console.log(res));

@@ -4,18 +4,23 @@ import Box from "@mui/material/Box";
 import { Button, CardActions, CardContent } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-
+import { userLogIn } from "../services/FacebookService";
 export const LogIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
- const redirectToSignup =()=>{
-navigate('/sign-up')
-  }
+  const redirectToSignup = () => {
+    navigate("/sign-up");
+  };
+
+  const handleLogIN = () => {
+    const data = { email, password };
+    userLogIn(data);
+  };
 
   return (
     <Grid main sx={{ bgcolor: "#DCDCDC", textAlign: "center", height: 700 }}>
@@ -35,6 +40,7 @@ navigate('/sign-up')
                 label="Email"
                 value={email}
                 sx={{ width: 350, pb: 3 }}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <TextField
@@ -44,21 +50,23 @@ navigate('/sign-up')
                 value={password}
                 sx={{ width: 350 }}
                 type={"password"}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
           </Box>
         </CardContent>
         <CardActions
           sx={{ display: "flex", justifyContent: "space-around", pb: 2 }}
-          >
+        >
           <Button
             size="medium"
             sx={{ bgcolor: "#1877F2", color: "white", width: 350 }}
+            onClick={() => handleLogIN()}
           >
             <b>Log in</b>
           </Button>
         </CardActions>
-        <Link onClick={()=>redirectToSignup()}>Sign up for Facebook</Link>
+        <Link onClick={() => redirectToSignup()}>Sign up for Facebook</Link>
       </Card>
     </Grid>
   );

@@ -10,13 +10,14 @@ import { Groups } from "./facebook-components/Groups";
 import { store } from "./store/Store";
 import { FriendsPage } from "./facebook-components/FriendsPage";
 import { SignUp } from "./auth/Signup";
+import { LogIn } from "./auth/Login";
 
 // import { LogIn } from "./auth/Login";
 export const Routes = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <SignUp />,
+      element: <LogIn />,
 
       children: [
         {

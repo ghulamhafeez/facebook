@@ -21,8 +21,8 @@ export const FriendsPage = () => {
             </Box>
           </CardContent>
           <Grid display={"flex"}  direction={"column"} sx={{pl:2}} gap={1} >
-          <Button sx={{bgcolor:'#1A6ED8' ,color:'white',width:140 ,pl:3}}>Confirm</Button>
-          <Button  sx={{bgcolor: '#D8DADF',color:'black',width:140,pl:3 , mb:2 }}>Delete</Button>
+          <Button sx={{bgcolor:'#1A6ED8' ,color:'white',width:140 }}>Confirm</Button>
+          <Button  sx={{bgcolor: '#D8DADF',color:'black',width:140 }}>Delete</Button>
           </Grid>
           
         </Card>;

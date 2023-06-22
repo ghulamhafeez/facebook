@@ -8,12 +8,15 @@ import { Feeds } from "./facebook-components/Feeds";
 import { Provider } from "react-redux";
 import { Groups } from "./facebook-components/Groups";
 import { store } from "./store/Store";
-import {FriendsPage} from "./facebook-components/FriendsPage"
+import { FriendsPage } from "./facebook-components/FriendsPage";
+// import { SignUp } from "./auth/Signup";
+// import { LogIn } from "./auth/Login";
 export const Routes = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout />,
+
       children: [
         {
           path: ``,
@@ -39,14 +42,14 @@ export const Routes = () => {
           path: "/friends-page",
           element: <FriendsPage />,
         },
-        
       ],
     },
+
   ]);
   return (
     <div>
       <Provider store={store}>
-        <RouterProvider router={router} ></RouterProvider>
+        <RouterProvider router={router}></RouterProvider>
       </Provider>
     </div>
   );

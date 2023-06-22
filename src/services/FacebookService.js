@@ -6,29 +6,29 @@ export const FacebookApi = createApi({
   reducerPath: "FacebookApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    getPosts: builder.query({
-      query: () => `post`,
-      providesTags: ['Post']
-    }),
+    // getPosts: builder.query({
+    //   query: () => `post`,
+    //   providesTags: ['Post']
+    // }),
 
-    addPost: builder.query({
-      query: (formData) => ({
-        url: "post",
-        method: "POST",
-        body: formData,
-      }),
-      invalidatesTags: ['Post']
-    }),
+    // addPost: builder.query({
+    //   query: (formData) => ({
+    //     url: "post",
+    //     method: "POST",
+    //     body: formData,
+    //   }),
+    //   invalidatesTags: ['Post']
+    // }),
 
-    deletePost: builder.query({
-      query: (id) =>
-        ({
-          url: `posts/${id}`,
-          method: "DELETE",
-          credentials: 'include',
-        }),
-        invalidatesTags: ['Post']
-    }),
+    // deletePost: builder.query({
+    //   query: (id) =>
+    //     ({
+    //       url: `posts/${id}`,
+    //       method: "DELETE",
+    //       credentials: 'include',
+    //     }),
+    //     invalidatesTags: ['Post']
+    // }),
 
     // updatePost: builder.query({
     //   query: (data, id) => ({
@@ -41,13 +41,31 @@ export const FacebookApi = createApi({
   }),
 });
 
-// export const addPost = (formData) => {
-//   return axios
-//     .post("http://localhost:3000/post", formData, {
-//       method: "POST",
-//     })
-//     .then((res) => console.log(res));
-// };
+export const addPost = (formData) => {
+  return axios
+    .post("http://localhost:3000/post", formData, {
+      method: "POST",
+    })
+    .then((res) => console.log(res));
+};
+
+export const userSignUp = (data) => {
+  console.log("data",data)
+  return axios
+    .post("http://localhost:3000/post/signup", data, {
+      method: "POST",
+    })
+    .then((res) => console.log(res));
+};
+
+export const userLogin = (data) => {
+  console.log("data",data)
+  return axios
+    .post("http://localhost:3000/login", data, {
+      method: "POST",
+    })
+    .then((res) => console.log(res));
+};
 
 export const deletePost = (id) => {
   return fetch(`http://localhost:3000/post/${id}`, {
@@ -67,9 +85,9 @@ export const updatePost = (data, id) => {
   });
 };
 
-// export const getPosts = () => {
-//   return fetch("http://localhost:3000/post").then((res) => res.json());
-// };
+export const getPosts = () => {
+  return fetch("http://localhost:3000/post").then((res) => res.json());
+};
 
 export const {
   useGetPostsQuery,

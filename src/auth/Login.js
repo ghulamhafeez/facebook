@@ -4,13 +4,18 @@ import Box from "@mui/material/Box";
 import { Button, CardActions, CardContent } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-
+import { useNavigate } from 'react-router-dom';
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
 export const LogIn = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
+
+ const redirectToSignup =()=>{
+navigate('/sign-up')
+  }
 
   return (
     <Grid main sx={{ bgcolor: "#DCDCDC", textAlign: "center", height: 700 }}>
@@ -45,7 +50,7 @@ export const LogIn = () => {
         </CardContent>
         <CardActions
           sx={{ display: "flex", justifyContent: "space-around", pb: 2 }}
-        >
+          >
           <Button
             size="medium"
             sx={{ bgcolor: "#1877F2", color: "white", width: 350 }}
@@ -53,7 +58,7 @@ export const LogIn = () => {
             <b>Log in</b>
           </Button>
         </CardActions>
-        <Link onClick={console.log("called")}>Sign up for Facebook</Link>
+        <Link onClick={()=>redirectToSignup()}>Sign up for Facebook</Link>
       </Card>
     </Grid>
   );

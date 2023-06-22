@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAddPostQuery} from "../services/FacebookService";
+import { addPost } from "../services/FacebookService";
 import { Button } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircleTwoTone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -23,7 +23,7 @@ export const CreatePostDialog = ({
   getData,
   id,
 }) => {
-  const [addPost] = useAddPostQuery()
+  // const [addPost] = useAddPostQuery()
   const [postValue, setPostValue] = useState(open && isEdit ? name : "");
   const [file, setFile] = useState(null);
 
@@ -44,7 +44,7 @@ export const CreatePostDialog = ({
     formData.append("file", file);
     formData.append("name", postValue);
 
-    await addPost(formData)
+    await addPost(formData).then(() => getData());
     setOpen(false);
     setPostValue("");
     getData();

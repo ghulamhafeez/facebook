@@ -4,9 +4,14 @@ import { Contacts } from "../constants/Constants";
 import { Icon } from "../constants/Constants";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import GroupsIcon from "@mui/icons-material/GroupsTwoTone";
-import React from "react";
-
+import React, { useEffect } from "react";
+import {getFriends} from '../services/FacebookService'
 export const RightSideBar = () => {
+
+  useEffect(()=>{
+    getFriends()
+  },[])
+
   return (
     <Grid>
       <Grid display={"flex"} gap={19}>

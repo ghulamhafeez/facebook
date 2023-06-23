@@ -14,7 +14,7 @@ export const LogIn = () => {
   const navigate = useNavigate();
 
   const redirectToSignup = () => {
-    navigate("/sign-up");
+    navigate("/sign-up"); 
   };
 
   const handleLogIN = () => {

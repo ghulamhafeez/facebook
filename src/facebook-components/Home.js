@@ -26,7 +26,8 @@ export const Home = () => {
 
   const getData = () => {
     // let { data =[] } = useGetPostQuery();
-    getPosts().then((data) => setPost(data))
+    getPosts().then((data) => {console.log('DATA',data)
+    setPost(data)})
 
    
   };

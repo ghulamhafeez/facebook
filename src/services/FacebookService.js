@@ -11,6 +11,13 @@ export const FacebookApi = createApi({
     //   providesTags: ['Post']
     // }),
 
+    getUsersRequest: builder.query({
+      query: () => ({
+        url: "post/user",
+        method: "GET",
+      }),
+    }),
+
     // addPost: builder.query({
     //   query: (formData) => ({
     //     url: "post",
@@ -49,19 +56,29 @@ export const addPost = (formData) => {
     .then((res) => console.log(res));
 };
 
-export const userSignUp = (data) => {
-  console.log("data",data)
+export const addFriend = (data) => {
+  console.log("dat",data)
+  const myData = { userName: data };
   return axios
-    .post("http://localhost:3000/post/signup", data, {
+    .post("http://localhost:3000/friend", myData, { 
+      method: "POST",
+    })
+    .then((res) => console.log(res));
+};
+
+export const userSignUp = (data) => {
+  console.log("data", data);
+  return axios
+    .post("http://localhost:3000/user/signup", data, {
       method: "POST",
     })
     .then((res) => console.log(res));
 };
 
 export const userLogIn = (data) => {
-  console.log("data",data)
+  console.log("data", data);
   return axios
-    .post("http://localhost:3000/post/login", data, {
+    .post("http://localhost:3000/user/login", data, {
       method: "POST",
     })
     .then((res) => console.log(res));
@@ -69,6 +86,12 @@ export const userLogIn = (data) => {
 
 export const deletePost = (id) => {
   return fetch(`http://localhost:3000/post/${id}`, {
+    method: "DELETE",
+  });
+};
+
+export const deleteUser = (id) => {
+  return fetch(`http://localhost:3000/user/${id}`, {
     method: "DELETE",
   });
 };
@@ -88,10 +111,17 @@ export const updatePost = (data, id) => {
 export const getPosts = () => {
   return fetch("http://localhost:3000/post").then((res) => res.json());
 };
+export const getFriends = () => {
+  return fetch("http://localhost:3000/friend").then((res) => res.json());
+};
+export const getUsersRequest = () => {
+  return fetch("http://localhost:3000/user").then((res) => res.json());
+};
 
 export const {
   useGetPostsQuery,
   useAddPostQuery,
   useDeletePostQuery,
   useUpdatePostQuery,
+  UseGetUsersRequestQuery,
 } = FacebookApi;
